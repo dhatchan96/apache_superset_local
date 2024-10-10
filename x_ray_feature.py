@@ -15,6 +15,13 @@ DASHBOARD_ENDPOINT = f"{SUPERSET_BASE_URL}/api/v1/dashboard/"
 EMBED_ENDPOINT = f"{SUPERSET_BASE_URL}/api/v1/dashboard/embedded"
 CSRF_TOKEN_ENDPOINT = f"{SUPERSET_BASE_URL}/api/v1/security/csrf_token/"
 
+# config variables
+COLUMN_NAME = 'column_name'
+COLUMN_TYPE = 'column_type'
+INT = 'int'
+FLOAT = 'float'
+VARCHAR = 'varchar'
+
 # Step 1: Authenticate (session-based auth if not using API key)
 def authenticate():
     login_data = {
