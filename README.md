@@ -1,5 +1,5 @@
 
-# Apache Superset Local Setup and API Guide
+# Apache Superset x-ray feature(same as in Metabase) implementatLocal Setup and API Guide
 
 This guide provides instructions for setting up Apache Superset locally and accessing its API to interact with your data. Superset is an open-source data exploration and visualization tool that allows you to build dashboards and perform analysis.
 
