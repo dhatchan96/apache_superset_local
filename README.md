@@ -1,7 +1,7 @@
 
-# Apache Superset x-ray feature(same as in Metabase) implementatLocal Setup and API Guide
+# Apache Superset Local Setup and API Guide
 
-This guide provides instructions for setting up Apache Superset locally and accessing its API to interact with your data. Superset is an open-source data exploration and visualization tool that allows you to build dashboards and perform analysis.
+This guide provides instructions for setting up Apache Superset locally using `pip` and accessing its API to interact with your data. Superset is an open-source data exploration and visualization tool that allows you to build dashboards and perform analysis.
 
 ## Table of Contents
 
@@ -27,17 +27,17 @@ Before starting, ensure you have the following installed:
 
 ## Setup
 
-### Method 1: Local Installation
+### Method 1: Local Installation Using pip
 
-1. Clone the Superset repository:
+1. Create and activate a Python virtual environment (optional but recommended):
    ```bash
-   git clone https://github.com/apache/superset.git
-   cd superset
+   python -m venv superset-env
+   source superset-env/bin/activate  # On Windows use `superset-env\Scripts\activate`
    ```
 
-2. Install the required dependencies:
+2. Install Apache Superset using pip:
    ```bash
-   pip install -r requirements.txt
+   pip install apache-superset
    ```
 
 3. Initialize the database:
@@ -61,14 +61,20 @@ Before starting, ensure you have the following installed:
 
 ### Method 2: Using Docker (Recommended)
 
-1. Navigate to the `superset` directory and start Docker Compose:
+1. Create a directory for Superset:
+   ```bash
+   mkdir superset
+   cd superset
+   ```
+
+2. Create a `docker-compose.yml` file with the configuration provided in the Superset documentation.
+
+3. Start Docker Compose:
    ```bash
    docker-compose -f docker-compose-non-dev.yml up
    ```
 
-2. Wait for Docker to pull and set up all necessary containers. This may take a few minutes.
-
-3. Access Superset at `http://localhost:8088`. Use default credentials (admin/admin) to log in initially, and change the password after logging in.
+4. Access Superset at `http://localhost:8088`. Use default credentials (admin/admin) to log in initially, and change the password after logging in.
 
 ## Accessing the API
 
@@ -98,7 +104,7 @@ curl -X GET http://localhost:8088/api/v1/dataset/ -H "Authorization: Bearer <ACC
 curl -X POST http://localhost:8088/api/v1/chart/ -H "Authorization: Bearer <ACCESS_TOKEN>" -H "Content-Type: application/json" -d '{
   "slice_name": "My New Chart",
   "viz_type": "pie",
-  "params": "{"groupby": ["country"], "metric": "sum__value"}",
+  "params": "{\"groupby\": [\"country\"], \"metric\": \"sum__value\"}",
   "datasource_id": 1,
   "datasource_type": "table"
 }'
